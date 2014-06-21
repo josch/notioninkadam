@@ -1,0 +1,2 @@
+NAME=
+CMDLINE=mem=256M@0M nvmem=256M@256M mem=512M@512M vmalloc=384M video=tegrafb console=tty0,115200n8 usbcore.old_scheme_first=1 cpuid=200102 devicetype=1002 tegraboot=nand mtdparts=tegra_nand:16384K@9984K(misc),16384K@26880K(recovery),16384K@43776K(boot),204800K@60672K(system),781952K@266112K(cache) root=/dev/mmcblk0p1 init=/sbin/init debug

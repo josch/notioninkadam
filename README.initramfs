@@ -1,0 +1,18 @@
+old udev: 147
+new udev: 168
+
+find . | cpio --quiet --dereference -o -H newc | gzip > ../debian-ramdisk.cpio.gz
+
+./BootTools/mkbootimg --kernel adam-kernel/arch/arm/boot/zImage --ramdisk linux_boot.img-ramdisk.cpio.gz \
+--cmdline 'mem=256M@0M nvmem=256M@256M mem=512M@512M vmalloc=384M video=tegra'\ 
+'fb console=tty0,115200n8 usbcore.old_scheme_first=1 cpuid=200102 devicetype='\
+'1002 tegraboot=nand mtdparts=tegra_nand:16384K@9984K(misc),16384K@26880K(rec'\
+'overy),16384K@43776K(boot),204800K@60672K(system),781952K@266112K(cache) roo'\
+'t=/dev/mmcblk0p1 init=/sbin/init debug' --output linux_boot_new.img
+
+sudo ./nvflash/nvflash --bl ./nvflash/bootloader.bin --download 9 linux_boot_new.img
+
+[ -c /dev/tty1 ] || mknod /dev/tty1 c 4 1
+setfont -v -C /dev/tty1 /Uni1-VGA16.psf.gz
+mknod /dev/mmcblk0p1 b 179 1
+sleep 5

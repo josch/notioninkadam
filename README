@@ -1,0 +1,32 @@
+/sys/devices/platform/pixel_qi_screen_ctrl/state
+
+event0 - hardware buttons
+event1 - touch buttons
+event2 - touchscreen
+
+Ericsson F3307
+AT+CFUN=1
+AT+CGDCONT=1,"IP","$APN"
+AT*ENAP=1,1
+dhclient usb0
+
+working:
+
+xorg
+touchscreen
+wifi
+usb host
+
+to be checked:
+wwan
+gps
+
+not working:
+v4l2
+sound
+
+who needs this:
+accelerometer
+battery monitoring
+cpu scaling
+bluetooth

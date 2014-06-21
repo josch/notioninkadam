@@ -1,0 +1,12 @@
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          setfont
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Start udevd, populate /dev and load drivers.
+### END INIT INFO
+
+[ -c /dev/tty1 ] || mknod /dev/tty1 c 4 1
+setfont -v -C /dev/tty1 /Uni1-VGA16.psf.gz
